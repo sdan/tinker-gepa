@@ -1,6 +1,8 @@
 # GEPA: Prompt Optimization via LLM Reflection
 
-Evolve system prompts through reflection - optimizer-free prompt optimization. GEPA evaluates prompts, has a teacher LLM reflect on failures, mutates the prompt, and keeps improvements.
+I spent the last week building GEPA within thinking machines' tinker-cookbook. GEPA basically does prompt optimization by sampling a bunch of times, having a larger LLM(teacher) reflect on failures and mutate the prompt within an environment we define. Environment creation is the harder part since you need to be able to let a teacher know how to reward/score prompts with a lot of Q/A pairs. I included GSM8K, HotpotQA, and AIME environments as an example.
+
+This utilizes Tinker API's batch sampling to take all the prompts we generate on one rollout, score them, then run another rollout all in one batch sync. It doesn't update the models weights.
 
 **Paper**: [arxiv.org/abs/2507.19457](https://arxiv.org/abs/2507.19457) | **Library**: [github.com/gepa-ai/gepa](https://github.com/gepa-ai/gepa)
 
