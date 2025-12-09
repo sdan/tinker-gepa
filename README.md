@@ -6,16 +6,29 @@ This utilizes Tinker API's batch sampling to take all the prompts we generate on
 
 **Paper**: [arxiv.org/abs/2507.19457](https://arxiv.org/abs/2507.19457) | **Library**: [github.com/gepa-ai/gepa](https://github.com/gepa-ai/gepa)
 
-## Running This Recipe
+## Installation
+
+This recipe requires the [Tinker API](https://thinkingmachines.ai/) and [tinker-cookbook](https://github.com/thinking-machines-lab/tinker-cookbook).
 
 ```bash
-pip install tinker_cookbook[gepa]
+# Get API access at https://thinkingmachines.ai/
+export TINKER_API_KEY=sk-...
+
+# Install dependencies
+pip install tinker
+pip install git+https://github.com/thinking-machines-lab/tinker-cookbook.git
+
+# Clone this repo
+git clone https://github.com/sdan/tinker-gepa.git
+cd tinker-gepa
 ```
+
+## Running This Recipe
 
 ### GSM8K
 
 ```bash
-python -m tinker_cookbook.recipes.gepa.train \
+python train.py \
     task_name=gsm8k \
     model_name="Qwen/Qwen3-4B-Instruct-2507" \
     reflection_model="deepseek-ai/DeepSeek-V3.1" \
@@ -27,7 +40,7 @@ After optimization, expect `final/best_score` around 0.91.
 ### HotpotQA
 
 ```bash
-python -m tinker_cookbook.recipes.gepa.train \
+python train.py \
     task_name=hotpotqa \
     model_name="Qwen/Qwen3-4B-Instruct-2507" \
     reflection_model="deepseek-ai/DeepSeek-V3.1" \
@@ -37,7 +50,7 @@ python -m tinker_cookbook.recipes.gepa.train \
 ### AIME
 
 ```bash
-python -m tinker_cookbook.recipes.gepa.train \
+python train.py \
     task_name=aime \
     model_name="Qwen/Qwen3-4B-Instruct-2507" \
     reflection_model="deepseek-ai/DeepSeek-V3.1" \
@@ -50,7 +63,7 @@ python -m tinker_cookbook.recipes.gepa.train \
 Register via `TASK_REGISTRY`:
 
 ```python
-from tinker_cookbook.recipes.gepa.tasks import GEPATask, register_task
+from tasks import GEPATask, register_task
 
 @register_task("my_benchmark")
 class MyBenchmarkTask(GEPATask):
@@ -69,4 +82,4 @@ class MyBenchmarkTask(GEPATask):
         return 1.0 if answer.strip() in response else 0.0
 ```
 
-Then: `python -m tinker_cookbook.recipes.gepa.train task_name=my_benchmark`
+Then: `python train.py task_name=my_benchmark`
