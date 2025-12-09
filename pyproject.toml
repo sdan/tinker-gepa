@@ -1,0 +1,14 @@
+[project]
+name = "tinker-gepa"
+version = "0.1.0"
+description = "GEPA: Prompt Optimization via LLM Reflection using Tinker API"
+requires-python = ">=3.11"
+dependencies = [
+    "tinker",
+    "gepa",
+    "chz",
+    "datasets",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]

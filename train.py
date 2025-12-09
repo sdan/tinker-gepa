@@ -7,12 +7,12 @@ from gepa.api import optimize as gepa_optimize
 import tinker
 
 from tinker_cookbook import cli_utils, model_info, renderers
-from tinker_cookbook.recipes.gepa.adapter import (
+from adapter import (
     TinkerDataInst,
     TinkerGEPAAdapter,
     TinkerReflectionLM,
 )
-from tinker_cookbook.recipes.gepa.tasks import GEPADataInstance, get_task, list_tasks
+from tasks import GEPADataInstance, get_task, list_tasks
 from tinker_cookbook.tokenizer_utils import get_tokenizer
 from tinker_cookbook.utils import ml_log
 
