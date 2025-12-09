@@ -12,10 +12,10 @@ This recipe requires the [Tinker API](https://thinkingmachines.ai/) and [tinker-
 
 ```bash
 # Get API access at https://thinkingmachines.ai/
-export TINKER_API_KEY=sk-...
+export TINKER_API_KEY=tml-...
 
 # Install dependencies
-pip install tinker
+pip install tinker gepa
 pip install git+https://github.com/thinking-machines-lab/tinker-cookbook.git
 
 # Clone this repo
